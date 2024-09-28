@@ -1,7 +1,7 @@
 ; ZX81 Characters.
 __:				equ	$00	;space
 _QT:			equ	$0B	;"
-_PD:			equ	$0C	;funt
+_PD:			equ	$0C	;pound
 _SD:			equ	$0D	;$
 _CL:			equ	$0E	;:
 _QM:			equ	$0F	;?

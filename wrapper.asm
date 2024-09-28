@@ -104,6 +104,89 @@ DFILE_DATA:
 	DLINE "    HELLO WORLD!"
 	DLINE_EMPTY 20
 
+	LUA
+		function cvt_ascii_to_zx81(ascii)
+			local zx81 = ""
+			for i = 1, #ascii do
+				local c = string.byte(ascii, i)
+				if c > 'z' then
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				else if c >= 'a' then
+					zx81 = zx81 .. string.char(c - 59)	-- a-z
+				else if c >= 'Z' then
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				else if c >= 'A' then
+					zx81 = zx81 .. string.char(c - 27)	-- A-Z
+				else if c == '@' then
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				else if c == '@' then
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				else if c == '?' then
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				else if c == '>' then
+					zx81 = zx81 .. string.char(0x12)	-- >
+				else if c == '=' then
+					zx81 = zx81 .. string.char(0x14)	-- =
+				else if c == '<' then
+					zx81 = zx81 .. string.char(0x13)	-- <
+				else if c == ';' then
+					zx81 = zx81 .. string.char(0x19)	-- ;
+				else if c == ':' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c >= '0' then
+					zx81 = zx81 .. string.char(c - 20)	-- 0-9
+				else if c == '/' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '.' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == ',' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '+' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '*' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == ')' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '&' then
+					zx81 = zx81 .. string.char(0x0E)	-- & = Pound
+				else if c == '$' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '"' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else if c == '(' then
+					zx81 = zx81 .. string.char(0x0E)	-- :
+				else
+					zx81 = zx81 .. string.char(0x0F)	-- ?
+				end
+				end
+				end
+				end
+			end
+			return zx81
+		end
+		function dline(ascii)
+			local line = ""
+			for i = 1, #ascii do
+				line = line .. string.format("_%s, ", string.upper(string.sub(ascii, i, i)))
+			end
+			print(line)
+		end
+	ENDLUA
+
+	LUA
+		dline("    HELLO WORLD!")
+	ENDLUA
+
 ; BASIC variables:
 BASIC_VARS:
 .end:
