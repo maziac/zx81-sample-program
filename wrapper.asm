@@ -57,7 +57,7 @@ MEMBOT:     	dup 30
 					defb 0
 				edup
 ;    defb 0,0,0,0,0,0,0,0,0,0,$84,$20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-UNUNSED2:       defw 0
+UNUSED2:       defw 0
 ; End of system variables
 
 
@@ -86,106 +86,18 @@ LINE2_RAND:
     defb $76; Newline
 .end
 
-; Third line with LOAD "..." to load the real program.
-LINE3_LOAD:
-	defb 0, 20	; Line 20
-    defw LINE3_LOAD.end - LINE3_LOAD.start
-.start:
-    defb $EF, $0B	; LOAD "
-	defb _O, _S, _M, _O ; "OSMO"
-	defb $0B  	; "
-	defb $76	; Newline
-.end
-
 ; Screen:
 DFILE_DATA:
 	defb _NL
-	DLINE "    HELLO WORLD!"
-	DLINE "    HELLO WORLD!"
-	DLINE_EMPTY 20
+	; dup 24
+	; 	defb _NL
+	; edup
 
-	LUA
-		function cvt_ascii_to_zx81(ascii)
-			local zx81 = ""
-			for i = 1, #ascii do
-				local c = string.byte(ascii, i)
-				if c > 'z' then
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				else if c >= 'a' then
-					zx81 = zx81 .. string.char(c - 59)	-- a-z
-				else if c >= 'Z' then
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				else if c >= 'A' then
-					zx81 = zx81 .. string.char(c - 27)	-- A-Z
-				else if c == '@' then
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				else if c == '@' then
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				else if c == '?' then
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				else if c == '>' then
-					zx81 = zx81 .. string.char(0x12)	-- >
-				else if c == '=' then
-					zx81 = zx81 .. string.char(0x14)	-- =
-				else if c == '<' then
-					zx81 = zx81 .. string.char(0x13)	-- <
-				else if c == ';' then
-					zx81 = zx81 .. string.char(0x19)	-- ;
-				else if c == ':' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c >= '0' then
-					zx81 = zx81 .. string.char(c - 20)	-- 0-9
-				else if c == '/' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '.' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == ',' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '+' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '*' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == ')' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '&' then
-					zx81 = zx81 .. string.char(0x0E)	-- & = Pound
-				else if c == '$' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '"' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else if c == '(' then
-					zx81 = zx81 .. string.char(0x0E)	-- :
-				else
-					zx81 = zx81 .. string.char(0x0F)	-- ?
-				end
-				end
-				end
-				end
-			end
-			return zx81
-		end
-		function dline(ascii)
-			local line = ""
-			for i = 1, #ascii do
-				line = line .. string.format("_%s, ", string.upper(string.sub(ascii, i, i)))
-			end
-			print(line)
-		end
-	ENDLUA
-
-	LUA
-		dline("    HELLO WORLD!")
-	ENDLUA
+	DLINE_EMPTY 5
+	DLINEC <_Z,_X,_8,_1,__,_S,_A,_M,_P,_L,_E,__,_P,_R,_O,_G,_R,_A,_M>
+	DLINE_EMPTY 5
+	DLINEC <_P,_R,_E,_S,_S,__,_QT,_S,_QT,__,_T,_O,__,_S,_T,_A,_R,_T>
+	DLINE_FILL_REMAINING
 
 ; BASIC variables:
 BASIC_VARS:
