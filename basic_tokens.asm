@@ -86,16 +86,3 @@ COPY        equ $FF
 .end
 	ENDM
 
-
-; Macro to define a line in the basic program with a REM statement.
-; The file_name parameter allows to set an assembler file to include.
-; The length of the REM statement is automaticallyset to the required length for the file.
-	MACRO BLINE_REM line_nr, file_name
-		defb line_nr>>8, line_nr & $FF
-		defw .end - .start
-.start:
-		defb REM
-		include file_name
-		defb $76
-.end
-	ENDM

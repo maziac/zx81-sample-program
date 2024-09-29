@@ -76,14 +76,8 @@ rem_line_end
 	; 10 IF INKEY$<>"S" THEN GOTO VAL "20"
 	BLINE 10, <IF, INKEYS, NEQ, _QT, _S, _QT, THEN, GO_TO, VAL, _QT, _1, _0, _QT>
 
-	BLINE 15, <PRINT, _QT, _H, _E, _L, _L, _O, _QT>
-
 	; 20 RAND USR VAL "16514"
 	BLINE 20, <RAND, USR, VAL, _QT, _1, _6, _5, _1, _4, _QT>
-
-
-	; 30 PRINT "HELLO"
-	;BLINE 30, <PRINT, _QT, _H, _E, _L, _L, _O, _QT>
 
 
 ; Screen:
