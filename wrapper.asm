@@ -11,8 +11,9 @@
 	DEVICE NOSLOT64K
 	SLDOPT COMMENT WPMEM, LOGPOINT, ASSERTION
 
-	; Include character codes
+	; Include character codes and BASIC tokens
 	include "charcodes.asm"
+	include "basic_tokens.asm"
 
 	; Include other macros etc.
 	include "utilities.asm"
@@ -38,7 +39,7 @@ S_TOP:          defw $0002
 LAST_K:         defw $fdbf
 DEBOUN:         defb 15
 MARGIN:         defb 55
-NXTLIN:         defw LINE2_RAND ; LINE2_RAND  ; Basic program next executed line
+NXTLIN:         defw BASIC_PROGRAM	; Basic program next executed line
 OLDPPC:         defw 0
 FLAGX:          defb 0
 STRLEN:         defw 0
@@ -61,30 +62,29 @@ UNUSED2:       defw 0
 ; End of system variables
 
 
-; Start of BASIC program:
-; First line with the REM statement that holds the machine code.
-LINE1_REM:
-	defb 0, 0	; Line 0
-    defw LINE1_REM.end - LINE1_REM.start  ; Length of line
-.start:
-	defb $EA	; REM
-
-; Include the assembler code
+; BASIC program:
+BASIC_PROGRAM:
+	; 1 REM ... machine code ...
+	defb 0, 1	; Line 1
+	defw rem_line_end - rem_line_start
+rem_line_start:
+	defb REM
 	include "main.asm"
+	defb NEWLINE
+rem_line_end
 
-; End of line
-	defb $76	; Newline
-LINE1_REM.end
+	; 10 IF INKEY$<>"S" THEN GOTO VAL "20"
+	BLINE 10, <IF, INKEYS, NEQ, _QT, _S, _QT, THEN, GO_TO, VAL, _QT, _1, _0, _QT>
 
-; Second line with RAND USR VAL "16514" to start the machine code.
-LINE2_RAND:
-	defb 0, 10	; Line 10
-    defw LINE2_RAND.end - LINE2_RAND.start
-.start:
-    defb $F9, $D4, $C5	; RAND USR VAL
-	defb $0B, $1D, $22, $21, $1D, $20, $0B	; "16514"
-    defb $76; Newline
-.end
+	BLINE 15, <PRINT, _QT, _H, _E, _L, _L, _O, _QT>
+
+	; 20 RAND USR VAL "16514"
+	BLINE 20, <RAND, USR, VAL, _QT, _1, _6, _5, _1, _4, _QT>
+
+
+	; 30 PRINT "HELLO"
+	;BLINE 30, <PRINT, _QT, _H, _E, _L, _L, _O, _QT>
+
 
 ; Screen:
 DFILE_DATA:
