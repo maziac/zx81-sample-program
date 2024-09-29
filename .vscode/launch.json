@@ -1,0 +1,55 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "zx81-program.p",
+            "remoteType": "zsim",
+            "zsim": {
+                "visualMemory": true,
+                "preset": "zx81",
+                "zx81UlaOptions": {
+                    "hires": true,
+                },
+                "limitSpeed": true
+            },
+            "sjasmplus": [
+                {
+                 "path": "zx81-program.sld"
+                }
+            ],
+            "history": {
+                "reverseDebugInstructionCount": 1000000,
+                "spotCount": 10,
+                "codeCoverageEnabled": true
+            },
+            "startAutomatically": true,
+            "commandsAfterLaunch": [
+            ],
+            "rootFolder": "${workspaceFolder}",
+            "topOfStack": "0x8000",
+            "load": "zx81-program.p"
+        },
+
+        {
+            "type": "dezog",
+            "request": "launch",
+            "name": "ZX81 boot",
+            "remoteType": "zsim",
+            "zsim": {
+                "visualMemory": true,
+                "preset": "zx81"
+            },
+            "commandsAfterLaunch": [],
+            "history": {
+                "reverseDebugInstructionCount": 1000000,
+                "spotCount": 10,
+                "codeCoverageEnabled": true
+            },
+            "startAutomatically": true,
+            "rootFolder": "${workspaceFolder}",
+            "topOfStack": "0x8000"
+        }
+    ]
+}

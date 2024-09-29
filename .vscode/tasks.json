@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make (sjasmplus)",
+            "type": "shell",
+            "command": "sjasmplus", // Please add the full path to sjasmplus
+            "args": [
+                "--sld=zx81-program.sld",
+                "--lst=zx81-program.lst",
+                "--raw=zx81-program.p",
+                "--fullpath",
+                "wrapper.asm"
+            ],
+            "problemMatcher": {
+                "owner": "sjasmplus",
+                "fileLocation": "autoDetect",
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
