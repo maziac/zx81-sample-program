@@ -36,18 +36,18 @@ MEM:            defw MEMBOT
 UNUSED1:        defb 0
 DF_SZ:          defb 2
 S_TOP:          defw $0002
-LAST_K:         defw $fdbf
+LAST_K:         defw $FDBF
 DEBOUN:         defb 15
 MARGIN:         defb 55
 NXTLIN:         defw BASIC_PROGRAM	; Basic program next executed line
 OLDPPC:         defw 0
 FLAGX:          defb 0
 STRLEN:         defw 0
-T_ADDR:         defw $0c8d
+T_ADDR:         defw $0C8D
 SEED:           defw 0
-FRAMES:         defw $f5a3
+FRAMES:         defw $F5A3
 COORDS:         defw 0
-PR_CC:          defb $bc
+PR_CC:          defb $BC
 S_POSN:         defw $1821
 CDFLAG:         defb $40
 PRBUFF:         dup 32 ; 32 Spaces + Newline
