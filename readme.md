@@ -1,5 +1,3 @@
-# z80-sample-program
-
 # Introduction
 This is a small ZX81 assembler program to illustrate the debugging with [DeZog](https://github.com/maziac/DeZog).
 The program consists of a BASIC loader (wrapper.asm) and and assembler program (main.asm).
@@ -45,19 +43,21 @@ A .p file is just a memory copy of the ZX81 RAM data from 0x4009 onwards.
 It contains the ZX81 system variables, the ZX81 BASIC program, the dfile (the screen) and the ZX81 BASIC variables.
 
 The wrapper.asm contains the system variables and also constructs a few BASIC lines.
+~~~
+ 1 REM ....
+ 10 IF INKEY$<>"S" THEN GOTO VAL "20"
+ 20 RAND USR VAL "16514"
+~~~
+
 The first line is a REM statement that will hold the machine code from main.asm.
 Then there is a line to wait on input from the user, the BASIC program continues when "S" is pressed.
-The next line calls the machine code with:
-~~~
-RAND USR VAL "16514"
-~~~
-This jumps into the machine code in the REM statement, i.e. the code from the main.asm.
+The last line jumps into the machine code in the REM statement, i.e. the code from the main.asm.
 
 Note:
 `VAL` is used to simplify the creation of the BASIC lines in assembler.
-Without `VAL` the line would look like
+Without `VAL` the call to the machine code would look like
 ~~~
-RAND USR 16514
+20 RAND USR 16514
 ~~~
 The memory layout of the number consists of the number digits followed by a 5 byte floating point exponent and mantissa.
 With using `VAL` we don't have to care about creating that floating point number. The ZX81 BASIC will do it for us.
@@ -112,6 +112,9 @@ You don't have to wait until the CPU-video-signal-generation happens.
 
 ![](documentation/images/dbg_step_hires_false.gif)
 
-IF "hires" is true you don't see any change to the screen until the video signal would be generated, i.e. this can be thousands of instructions later.
+If "hires" is true you don't see any change to the screen until the video signal would be generated, i.e. this can be thousands of instructions later.
 
 
+
+# Attribution
+The wrapper software origins on software of [stevexyz](https://github.com/stevexyz) and Lardo.
