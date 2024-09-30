@@ -86,3 +86,23 @@ COPY        equ $FF
 .end
 	ENDM
 
+
+; The 2 macros BLINE_REM and BLINE_REM_END are used to define a REM line.
+; Place our assember code between the 2 macros.
+; Here is an example:
+; 	BLINE_REM 1, rem_end
+; 	nop ; your assembler instructions
+; 	BLINE_REM_END
+; rem_end:
+	MACRO BLINE_REM line_nr, end_address
+		defb line_nr>>8, line_nr & $FF
+		defw end_address - .start
+.start:
+		defb REM
+	ENDM
+
+
+	MACRO BLINE_REM_END
+label_BLINE_REM_COUNTER:
+		defb $76
+	ENDM

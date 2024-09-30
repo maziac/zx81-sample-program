@@ -57,7 +57,6 @@ PRBUFF:         dup 32 ; 32 Spaces + Newline
 MEMBOT:     	dup 30
 					defb 0
 				edup
-;    defb 0,0,0,0,0,0,0,0,0,0,$84,$20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 UNUSED2:       defw 0
 ; End of system variables
 
@@ -65,13 +64,10 @@ UNUSED2:       defw 0
 ; BASIC program:
 BASIC_PROGRAM:
 	; 1 REM ... machine code ...
-	defb 0, 1	; Line 1
-	defw rem_line_end - rem_line_start
-rem_line_start:
-	defb REM
+	BLINE_REM 1, rem_end
 	include "main.asm"
-	defb NEWLINE
-rem_line_end
+	BLINE_REM_END
+rem_end
 
 	; 10 IF INKEY$<>"S" THEN GOTO VAL "20"
 	BLINE 10, <IF, INKEYS, NEQ, _QT, _S, _QT, THEN, GO_TO, VAL, _QT, _1, _0, _QT>
