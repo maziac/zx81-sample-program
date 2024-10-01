@@ -64,10 +64,11 @@ UNUSED2:       defw 0
 ; BASIC program:
 BASIC_PROGRAM:
 	; 1 REM ... machine code ...
-	BLINE_REM 1, rem_end
+	BLINE_START 1, REM, rem_end
 	include "main.asm"
-	BLINE_REM_END
+	BLINE_END
 rem_end
+
 
 	; 10 IF INKEY$<>"S" THEN GOTO VAL "20"
 	BLINE 10, <IF, INKEYS, NEQ, _QT, _S, _QT, THEN, GO_TO, VAL, _QT, _1, _0, _QT>

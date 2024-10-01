@@ -94,7 +94,7 @@ COPY        equ $FF
 ; 	nop ; your assembler instructions
 ; 	BLINE_REM_END
 ; rem_end:
-	MACRO BLINE_REM line_nr, end_address
+	MACRO BLINE_START line_nr, tokens, end_address
 		defb line_nr>>8, line_nr & $FF
 		defw end_address - .start
 .start:
@@ -102,7 +102,26 @@ COPY        equ $FF
 	ENDM
 
 
-	MACRO BLINE_REM_END
-label_BLINE_REM_COUNTER:
+	MACRO BLINE_END
 		defb $76
+	ENDM
+
+
+
+    ; Macro that creates a BASIC sequence vor a number:
+	; VAL "value"
+	; I.e. the value is converted to decimal digits encoded
+	; in ZX81 charset.
+	; The number is surrounded by quates and the VAL token is added.
+	; Can be used e.g. in a line like:
+	; 20 RAND USR VAL "28881"
+	MACRO VAL_NUMBER value
+		defb VAL
+		defb _QT
+		defb value / 10000 + _0
+		defb value / 1000 % 10 + _0
+		defb value / 100 % 10 + _0
+		defb value / 10 % 10 + _0
+		defb value % 10 + _0
+		defb _QT
 	ENDM
