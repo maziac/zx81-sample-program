@@ -9,8 +9,8 @@
             "zsim": {
                 "visualMemory": true,
                 "preset": "zx81",
-                "zx81UlaOptions": {
-                    "hires": true,
+                "ulaOptions": {
+                    "hires": false,
                 },
                 "limitSpeed": true
             },
@@ -28,7 +28,6 @@
             "commandsAfterLaunch": [
             ],
             "rootFolder": "${workspaceFolder}",
-            "topOfStack": "0x8000",
             "load": "zx81-program.p"
         },
 

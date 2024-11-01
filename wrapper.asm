@@ -21,7 +21,7 @@
 ; System variables tht start at $4009
 	ORG $4009
 VERSN:          defb 0
-E_PPC:          defw 2
+E_PPC:          defw 1
 D_FILE:         defw DFILE_DATA		; $400C
 DF_CC:          defw DFILE_DATA+1
 VARS:           defw BASIC_VARS
