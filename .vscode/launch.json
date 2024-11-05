@@ -11,8 +11,7 @@
                 "preset": "zx81",
                 "ulaOptions": {
                     "hires": false,
-                },
-                "limitSpeed": true
+                }
             },
             "sjasmplus": [
                 {

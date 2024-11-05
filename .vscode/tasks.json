@@ -7,7 +7,6 @@
             "command": "sjasmplus", // Please add the full path to sjasmplus
             "args": [
                 "--sld=zx81-program.sld",
-                "--lst=zx81-program.lst",
                 "--raw=zx81-program.p",
                 "--fullpath",
                 "wrapper.asm"
