@@ -19,6 +19,11 @@ In the current configuration the program runs in the internal Z80/ZX81 simulator
 If you want to build the Z80 binary yourself (not required if you just want to test debugging):
 - Z80 Assembler: sjasmplus, https://github.com/z00m128/sjasmplus (known to work: v1.20.2).
 
+# GitHub Codespaces
+Thanks to [FinnAngelo](https://github.com/FinnAngelo) this repository has Codespaces enabled.
+I.e. to try out DeZog and the sample ZX81 program you don't need to install vscode, sjasmplus or even DeZog:
+If you have a github account you can simply open a codespace with everything pre-installed.
+
 
 # Building
 First if you just want to test debugging with the 'DeZog' extension there is no need to build/assemble the required files.
