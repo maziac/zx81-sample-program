@@ -22,7 +22,8 @@ If you want to build the Z80 binary yourself (not required if you just want to t
 # GitHub Codespaces
 Thanks to [FinnAngelo](https://github.com/FinnAngelo) this repository has Codespaces enabled.
 I.e. to try out DeZog and the sample ZX81 program you don't need to install vscode, sjasmplus or even DeZog:
-If you have a github account you can simply open a codespace with everything pre-installed.
+If you have a github account you can simply open a codespace with everything pre-installed:
+![](documentation/images/codespaces_create.jpg)
 
 
 # Building
